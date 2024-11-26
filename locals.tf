@@ -9,7 +9,7 @@ locals {
     }
   ]...)
 
-  owners = compact([for _, upn in var.owners: lookup(local.user_object_ids, upn, "")])
+  owners = length(var.owners) > 0 ? compact([for _, upn in var.owners : lookup(local.user_object_ids, upn, "")]) : [data.azuread_client_config.current.object_id]
   members = compact([for _, upn in var.members: lookup(local.user_object_ids, upn, "")])
 
   permissions = merge([

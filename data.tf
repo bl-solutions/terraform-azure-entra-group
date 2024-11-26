@@ -1,3 +1,5 @@
+data "azuread_client_config" "current" {}
+
 data "azuread_users" "this" {
   user_principal_names = local.user_principal_names
   ignore_missing       = true
