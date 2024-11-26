@@ -14,7 +14,7 @@ locals {
 
   permissions = merge([
     for name, scopes in var.assignments : {
-      for _, scope in scopes : uuidv5("oid", join("-", [role, scope])) => {
+      for _, scope in scopes : uuidv5("oid", join("-", [name, scope])) => {
         name  = name
         scope = scope
       }
