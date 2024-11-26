@@ -9,8 +9,8 @@ locals {
     }
   ]...)
 
-  owners = length(var.owners) > 0 ? compact([for _, upn in var.owners : lookup(local.user_object_ids, upn, "")]) : [data.azuread_client_config.current.object_id]
-  members = compact([for _, upn in var.members: lookup(local.user_object_ids, upn, "")])
+  owners  = length(var.owners) > 0 ? compact([for _, upn in var.owners : lookup(local.user_object_ids, upn, "")]) : [data.azuread_client_config.current.object_id]
+  members = compact([for _, upn in var.members : lookup(local.user_object_ids, upn, "")])
 
   permissions = merge([
     for name, scopes in var.assignments : {
@@ -23,7 +23,7 @@ locals {
 
   assignments = {
     for i, permission in local.permissions : i => {
-      principal_id = azuread_group.this.id
+      principal_id       = azuread_group.this.id
       scope              = permission["scope"]
       role_definition_id = lookup(data.azurerm_role_definition.this, i).id
     }
