@@ -1,0 +1,7 @@
+formatter: "md table"
+
+output:
+  file: "README.md"
+
+settings:
+  lockfile: false

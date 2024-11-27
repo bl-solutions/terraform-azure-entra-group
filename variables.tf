@@ -4,25 +4,25 @@ variable "display_name" {
 }
 
 variable "description" {
-  description = "The description of the Entra Group."
+  description = "(Optional) Description of the Entra Group."
   type        = string
   default     = ""
 }
 
 variable "members" {
-  description = "A list of users including the group."
+  description = "(Optional) List of user principal names to add as members of the group."
   type        = list(string)
   default     = []
 }
 
 variable "owners" {
-  description = "A list of owners including the group."
+  description = "(Optional) List of user principal names to add as owners of the group. If not provided, the principal used by Terraform is used as owner of the group."
   type        = list(string)
   default     = []
 }
 
 variable "assignments" {
-  description = "Right of the group on Azure."
+  description = "(Optional) Right of the group on Azure. See Assignment section of README.md for details."
   type        = map(list(string))
   default     = {}
 }
