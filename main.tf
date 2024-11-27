@@ -37,7 +37,7 @@ locals {
 
   assignments = {
     for i, permission in local.permissions : i => {
-      principal_id       = azuread_group.this.id
+      principal_id       = azuread_group.this.object_id
       scope              = permission["scope"]
       role_definition_id = lookup(data.azurerm_role_definition.this, i).id
     }
